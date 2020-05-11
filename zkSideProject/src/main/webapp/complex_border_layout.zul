@@ -1,0 +1,155 @@
+<zk>
+	<style>
+		body *:not([class*="z-icon-"]) {
+    		font-family: Microsoft JhengHei;
+    		font-size: 18px;
+		}
+		.breeze .complex-layout, .breeze .complex-layout .z-south, .breeze .complex-layout .z-west {
+			background: #F7F7F7;
+		}
+		.z-borderlayout {  background: #FFFFFF }
+		.complex-layout .z-north { 
+			background: white;
+			
+		
+		 }
+		.complex-layout .z-north > div { padding: 5px; }
+		
+		img.complex-layout-header-img { padding: 0 10px; }
+		
+		.inner-border, .inner-border .z-north, .inner-border .z-west,
+		.inner-border .z-south, .inner-border .z-east { background: #FFFFFF; }
+		.dl-link { text-decoration: none; cursor: pointer; }
+		.navbarItems a {
+			color: inherit; 
+    		text-decoration: none;  		
+		}
+	</style>
+	<div viewModel="@id('vm') @init('demo.layout.complex_border_layout.ComplexBorderlayoutViewModel')">
+		<borderlayout sclass="complex-layout" height="810px">
+			<north  size="90px" border="0" margins="0,80,80,0">
+			
+			<borderlayout  sclass="navbarItems">
+				<west width="500px" border="0">
+					<hlayout valign="middle" >
+					
+					<image sclass="complex-layout-header-img"
+							src="/images/ZK-Logo.gif" height="50px"/>
+						
+					<a href="">發現</a>
+					<a href="">排行榜</a>
+					<a href="">歌單</a>
+					<a href="">徵選</a>
+					<a href="">演出活動</a>
+	
+					</hlayout>
+				</west>
+				<east border="0">
+					<hlayout>
+					<textbox></textbox>
+					<button label="search"></button>
+					</hlayout>
+				</east>
+				<north border="0" size="0">
+				</north >
+				<south border="0" size="0" ></south>
+			</borderlayout>
+				
+					
+
+			</north>
+			<!-- Sidebar -->
+			<west width="20%" border="0" flex="true" splittable="true"
+				margins="0,100,0,0">
+				<vlayout spacing="0">
+					<panel width="100%" border="normal"
+						title="一天一首">
+						<panelchildren style="padding:5px;">
+							
+							<vbox>
+								<image sclass="complex-layout-header-img"
+									src="/images/sayGoodBye.jfif" width="80%"/>
+								
+								<label value="Say Goodbye 說再見" style="font-size:25px;font-weight: bold;" />
+								<label value="夢離子 ᴍ∞ɴʀɪᴢᴇ" style="font-size:20px;" />
+								<label value="每日一曲，從日常的編輯推薦中再次精選而出，是街聲給每一首好作品的至高激賞與鼓勵。" style="font-size:15px;" />
+								
+								<toolbarbutton label="查看更多" />
+								
+							</vbox>
+						</panelchildren>
+					</panel>
+					
+					
+				</vlayout>
+			</west>
+			<east width="0px" border="0" title="Quick Links" flex="false" margins="0,0,100,0">
+			</east>
+			<!-- Content -->
+			<center border="0">
+				<borderlayout sclass="inner-border">
+					<north border="0" height="10%" margins="2,3,0,0">
+						<label value="StreetVoice 即時熱門" style="font-size:25px;font-weight: bold;" />
+					</north>
+					
+					
+					<south border="1" height="90%" margins="0,0,0,0">
+						
+								
+								
+								
+								
+		<listbox nonselectableTags=""  model="@load(vm.musics)"  onSelect="@command('showMusic')" selectedItem="@save(vm.selectedMusic, before='showMusic')"  >           
+                <listhead>
+                    <listheader label=""  />
+                    <listheader label=""  />                    
+                    <listheader label=""  />
+                    <listheader label=""  />
+                    
+                </listhead>
+                <template name="model"  var="item" status="s">
+                    <listitem  onMouseOver="@command('showMusic', target=self, songName=item.songName)">
+                    	
+                        <listcell >
+                            <label value="@load(s.index+1)" />
+                        </listcell>
+                        <listcell >
+                            <image width="100px" content="@load(item.picture) @converter('demo.layout.complex_border_layout.ImageToZkImageConverter')" />
+                        </listcell>                        
+                        <listcell >
+                            <label value="@load(item.songName)" />
+                        </listcell>
+                        <listcell >
+                            <label value="@load(item.singerName)" />
+                        </listcell>
+                        <listcell >
+                            
+ 							<audio content="@load(item.audio) @converter('demo.layout.complex_border_layout.AudioToZkImageConverter')"  controls="true"></audio>                       
+                        </listcell> 
+                        <!--  
+                        <listcell >
+                            <button label="play" onClick="@command('playMusic',target=self, audio=item.audio)"></button>
+                        </listcell>
+                        
+                        <listcell >
+                            <button label="stop"></button>
+                        </listcell>                        
+                        -->
+                    </listitem>
+                </template>
+            </listbox>     
+								
+								
+							
+					</south>
+				</borderlayout>
+			</center>
+			<south size="60px" border="0"
+				style="background: none repeat scroll 0 0 ;">
+				<toolbar mold="panel" align="center">
+					version 2020.04.17 17:36
+				</toolbar>
+			</south>
+		</borderlayout>
+	</div>
+</zk>
