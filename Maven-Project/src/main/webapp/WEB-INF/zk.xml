@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<zk>
-	<!-- Complex Border Layout -->
-	<!-- 9.0.0-Eval -->
-
-	<listener>
-		<listener-class>org.zkoss.zkmax.au.websocket.WebSocketWebAppInit</listener-class>
-	</listener>
-</zk>
